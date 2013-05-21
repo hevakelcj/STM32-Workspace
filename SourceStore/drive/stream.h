@@ -1,10 +1,6 @@
 #ifndef    __STREAM_H__
 #define    __STREAM_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdio.h>
 #include "type.h"
 #include "includes.h"
@@ -12,7 +8,16 @@ extern "C" {
 
 #define	FILE_OPTION_CONSOLE         0x01
 
-struct __FILE{
+#ifdef  __cplusplus
+extern "C" {
+#endif
+
+#ifdef  __cplusplus
+struct std::__FILE
+#else
+struct __FILE
+#endif
+{
 	void      (*output)(char);    	//输出数据
 	char	  (*input)();		    //获取数据
 

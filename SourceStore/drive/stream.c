@@ -3,10 +3,15 @@
 #include "usart_file.h"
 #include "spin_lock.h"
 
-FILE	__stdin, __stdout, __stderr;
+#ifdef  __cplusplus
+    extern "C" {
+    std::FILE   std::__stdin, std::__stdout, std::__stderr;
+#else
+    FILE	__stdin, __stdout, __stderr;
+#endif
 
 /***********************************************************************************
-* Function: STDIO_init;
+* Function: STDIO_Init;
 *
 * Description: 初始化标准输入输出;
 *           
@@ -113,3 +118,8 @@ void fpost(FILE *file, int data)
 		OSSemPost(file->semaphore);
 	}
 }
+
+#ifdef  __cplusplus
+    }
+#endif
+
